@@ -7,17 +7,19 @@ const Navbar = () => {
 
     const handleSignOut = () => {
         signOutUser()
-        .then(()=>{
-            console.log("signed out user");
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
+            .then(() => {
+                console.log("signed out user");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
-
+        {
+            user && <li><NavLink to='/myApplications'>My Applications</NavLink></li>
+        }
     </>
 
     return (
