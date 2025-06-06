@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
     const { id: jobId } = useParams();
@@ -12,7 +14,28 @@ const JobApply = () => {
         const linkedIn = form.linkedin.value;
         const github = form.github.value;
         const resume = form.resume.value;
-        console.log(linkedIn, github, resume);
+
+        const application = {
+            linkedIn, github, resume, jobId, applicant: user.email,
+        }
+
+        // post data using axios 
+        axios.post('http://localhost:3000/applications', application)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your application has been submitted",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
