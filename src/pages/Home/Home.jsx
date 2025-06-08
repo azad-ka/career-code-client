@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <div>
-            <Banner></Banner>
+            <Banner> </Banner>
             <Suspense fallback={"loading..."}>
                 <HotJobs jobsPromise={jobsPromise}></HotJobs>
             </Suspense>
