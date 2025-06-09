@@ -24,7 +24,12 @@ const Navbar = () => {
 
         {/* for recruiter */}
         {
-            user && <li><NavLink to='/addJobs'>Add Jobs</NavLink></li>
+
+            user && <>
+                <li><NavLink to='/addJobs'>Add Jobs</NavLink></li>
+                <li><NavLink to='/myPostedJobs'>My Jobs</NavLink></li>
+            </>
+
         }
     </>
 

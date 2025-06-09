@@ -1,5 +1,6 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
 
 const AddJob = () => {
     const { user } = useAuth();
@@ -14,6 +15,17 @@ const AddJob = () => {
 
         newJob.requirements = newJob.requirements.split(',').map(req => req.trim());
         console.log(newJob);
+        newJob.status = 'active';
+
+        // save job data to database using axios 
+        axios.post('http://localhost:3000/jobs', newJob)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
     }
 
     return (
